@@ -1,15 +1,18 @@
 /*************************************************************************/
-/*								免責事項								 */
-/*		このプログラムで起きたあらゆる損害に責任を持ちません。			 */
-/*																		 */
-/*																	   	 */
-/*		作成者  霧紙 レイ、stender氏									 */
-/*		作成日  2021/06/05												 */
-/*																		 */
-/*								その他									 */
-/*		利用にあたってはご自由にどうぞ。								 */
-/*		Twitterで一言いただけるとモチベが上がりアップデートするかも？	 */
-/*																	   	 */
+/*免責事項
+/*　このプログラムで起きたあらゆる損害に責任を持ちません。
+/*
+/*作成者
+/*　霧紙 レイ
+/*　Stender氏
+/*
+/*作成日
+/*　2021/06/05
+/*
+/*その他
+/*　利用にあたってはご自由にどうぞ。
+/*　Twitterで一言いただけるとモチベが上がりアップデートするかも？
+/*
 /*************************************************************************/
 
 
@@ -76,8 +79,8 @@ void nl(){
 	int a;
 	
 	/*************************************************************************/
-	/*持ち方の設定部分														 */
-	/*持ち手の表示はghというグローバル変数に格納している。					 */
+	/*持ち方の設定部分
+	/*持ち手の表示はghというグローバル変数に格納している。
 	/*************************************************************************/
 	
 	printf("\n持つ時の見た目は？\t\n\n");
@@ -89,7 +92,6 @@ void nl(){
 		
 		//判定部分
 		switch(a){
-			
 			case 0:
 				strcat(gh,H);
 				add();
@@ -123,10 +125,15 @@ void new_item(){
 	
 	//ファイル記述
 	FILE *file;
-    file=fopen("NEXT_ITEM.json","a+");
-	fprintf(file,"{\n	\"parent\":\"item/%s\",\n	\"textures\":{\n		\"layer0\":\"item/%s\"\n	}\n}\n",old_name,new_name);
-    fclose(file);
 	
+	//ファイル名設定（追記モード）
+    	file=fopen("NEXT_ITEM.json","a+");
+	
+	//内容
+	fprintf(file,"{\n	\"parent\":\"item/%s\",\n	\"textures\":{\n		\"layer0\":\"item/%s\"\n	}\n}\n",old_name,new_name);
+    	fclose(file);
+	
+	//無理やり終了
 	exit(0);
 }
 
@@ -141,9 +148,13 @@ void add(){
 	
 	//ファイル書き込み
 	FILE *file;
-    file=fopen("NODATA.json","a+");
+	
+	//ファイル名設定（追記モード）
+    	file=fopen("NODATA.json","a+");
+	
+	//内容
 	fprintf(file,"{\n	\"parent\":\"minecraft:item/%s\",\n	\"textures\":{\n	\"layer0\":\"minecraft:item/%s\"\n	},\n	\"overrides\":[\n",gh,name);
-    fclose(file);
+    	fclose(file);
 	
 	//ファイルに追記するプログラムに引き継ぐ
 	cr();
@@ -164,7 +175,6 @@ void cr(){
 		if(9<a && a<100){
 			a=a*1000000;
 			break;
-		
 		}
 		else{
 			printf("\n不正な値です。 %d\n\n",a);
@@ -207,7 +217,6 @@ void cr(){
 		}
 		else{
 			printf("\n不正な値です。 %d\n\n",c);
-			
 		}
 	}
 	
@@ -226,7 +235,6 @@ void cr(){
 		}
 		else{
 			printf("\n不正な値です。 %d\n\n",min);
-
 		}
 	}
 	
@@ -243,6 +251,7 @@ void cr(){
 			printf("不正な値です。 %d\n\n",max);
 		}
 	}
+	
 	//連番処理へと引き渡す
 	ren(min,max,sum);
 }
@@ -254,9 +263,13 @@ void ren(int x,int y,int z){
 		
 		//ファイル書き込み
 		FILE *file;
-    	file=fopen("NODATA.json","a+");
+		
+		//ファイル名設定（追記モード）
+    		file=fopen("NODATA.json","a+");
+		
+		//内容
    		fprintf(file,"		{ \"predicate\": {\"custom_model_data\": %d}, \"model\": \"item/\"},\n",id);
-    	fclose(file);
+    		fclose(file);
 		
 		//ここで連番を作成している
 		id=id+1;
