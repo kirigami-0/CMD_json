@@ -14,8 +14,6 @@
 /*　Twitterで一言いただけるとモチベが上がりアップデートするかも？
 /*
 /*************************************************************************/
-
-
 //使用したヘッダーファイル
 #include<stdio.h>
 #include <string.h>
@@ -38,44 +36,35 @@ void main(void){
 	printf("\n====================================================\n");
 	printf("	            注意\n");
 	printf("  指定された値がある場合は文字を入れないでください\n");
-	printf("====================================================\n");
+	printf("======================================================\n");
 	printf("\n制作済みのファイルに追記するなら     0を入力\n");
 	printf("既存アイテムとのテクスチャ連携なら   1を入力\n");
 	printf("新しいアイテムを作成するなら         2を入力\n");
-	
-
-	
-	
+	printf("\n====================================================\n");
 	while(1){
 		printf("\n");
 		scanf("%d",&n);
-		switch(n){
-			
+		switch(n){//文字入れるとバグ生まれるのでどうしよう？
 			case 0:
 				cr();
 				break;
-				
 			case 1:
 				nl();
 				break;
-				
 			case 2:
 				new_item();
 				break;
-				
 			default:
 				printf("\n\n入力ミス\n");
 				continue;
 		}
 	}
 }
-
 void nl(){
-	
+	//関数宣言
 	char G[20]="generated";
 	char H[20]="handheld_rod";
 	char newtitle[20];
-	
 	int a;
 	
 	/*************************************************************************/
@@ -89,19 +78,16 @@ void nl(){
 		
 	while(1){
 		scanf("%d",&a);
-		
 		//判定部分
-		switch(a){
+		switch(a){//同じく文字入れると死ぬ。
 			case 0:
 				strcat(gh,H);
 				add();
 				break;
-			
 			case 1:
 				strcat(gh,G);
 				add();
 				break;
-			
 			default:
 				printf("\n\n入力ミス\n");
 				continue;
@@ -145,7 +131,6 @@ void add(){
 	printf("\nマイクラ公式のアイテム名を入力してください。\n\n");
 	scanf("%s",name);
 	
-	
 	//ファイル書き込み
 	FILE *file;
 	
@@ -159,7 +144,6 @@ void add(){
 	//ファイルに追記するプログラムに引き継ぐ
 	cr();
 }
-
 //ファイルに追記するプログラム上位4桁書き込み
 void cr(){
 	int a,b,c;
@@ -174,13 +158,11 @@ void cr(){
 		//判定部分
 		if(9<a && a<100){
 			a=a*1000000;
-			break;
 		}
 		else{
 			printf("\n不正な値です。 %d\n\n",a);
 		}
 	}
-	
 	//ジャンル
 	printf("\nジャンルを入力1～9まで\n");
 	printf("1,2,3は\t自由空間\n");
@@ -189,17 +171,14 @@ void cr(){
 	printf("8,9は\t農業系\n\n");
 	while(1){
     	scanf("%d",&b);
-		
 		//判定部分
 		if(0 <= b && b<10 ){
 			b=b*100000;
-			break;
 		}
 		else{
 			printf("\n不正な値です。 %d\n\n",b);
 		}
 	}
-	
 	//分類
 	printf("\n分類を入力1～9まで\n");
 	printf("1,2は\tツール\n");
@@ -209,17 +188,14 @@ void cr(){
 	
 	while(1){
 		scanf("%d",&c);
-		
 		//判定部分
 		if(0<c && c<10){
 			c=c*10000;
-			break;
 		}
 		else{
 			printf("\n不正な値です。 %d\n\n",c);
 		}
 	}
-	
 	//上の値を足す。
 	sum=a+b+c;
 	
@@ -228,30 +204,24 @@ void cr(){
 	printf("\n初期値を入力1～9999まで\n\n");
 	while(1){
     	scanf("%d",&min);
-		
 		//判定部分
 		if(0<min || c>10000){
-			break;
 		}
 		else{
 			printf("\n不正な値です。 %d\n\n",min);
 		}
 	}
-	
 	//上限値
 	printf("\n上限値を入力%d～9999まで\n\n",min);
 	while(1){
     	scanf("%d",&max);
-		
 		//判定部分
 		if(min<max || max<10000){
-			break;
 		}
 		else{
 			printf("不正な値です。 %d\n\n",max);
 		}
 	}
-	
 	//連番処理へと引き渡す
 	ren(min,max,sum);
 }
